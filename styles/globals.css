@@ -1,0 +1,13 @@
+/* ./styles/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+    .icon{
+        @apply hover:bg-white cursor-pointer p-2 transition hover:scale-125 duration-150 rounded-md
+    }
+    .headerText{
+        @apply hidden text-sm md:inline-flex hover:underline cursor-pointer
+    }
+}
