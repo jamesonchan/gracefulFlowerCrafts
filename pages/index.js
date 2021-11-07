@@ -3,7 +3,8 @@ import Header from '../components/Header'
 import BottomHeader from '../components/BottomHeader'
 import FlowerItems from '../components/FlowerItems'
 
-export default function Home() {
+export default function Home({products}) {
+
   return (
     <div className=''>
       <Head>
@@ -11,6 +12,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+    
       {/* header */}
       <Header />
       <BottomHeader />
@@ -18,8 +20,19 @@ export default function Home() {
      
       {/* main section */}
       <main>
-        <FlowerItems />
+        <FlowerItems products={products}/>
       </main>
     </div>
   )
+}
+
+export async function getServerSideProps(context){
+  const products = await fetch('https://fakestoreapi.com/products').then(
+    res=>res.json()
+  )
+  return {
+    props:{
+      products
+    }
+  }
 }

@@ -1,45 +1,22 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
+import Item from './Item'
 
 
 
 
-function FlowerItems() {
+function FlowerItems({products}) {
+
+    
 
 
     return (
-        <div className='mt-20'>
-            <h1>i am items</h1>
-            <h1>i am items</h1>
-            <h1>i am items</h1>
-            <h1>i am items</h1>
-            <h1>i am items</h1>
-            <h1>i am items</h1>
-            <h1>i am items</h1>
-            <h1>i am items</h1>
-            <h1>i am items</h1>
-            <h1>i am items</h1>
-            <h1>i am items</h1>
-            <h1>i am items</h1>
-            <h1>i am items</h1>
-            <h1>i am items</h1>
-            <h1>i am items</h1>
-            <h1>i am items</h1>
-            <h1>i am items</h1>
-            <h1>i am items</h1>
-            <h1>i am items</h1>
-            <h1>i am items</h1>
-            <h1>i am items</h1>
-            <h1>i am items</h1>
-            <h1>i am items</h1>
-            <h1>i am items</h1>
-            <h1>i am items</h1>
-            <h1>i am items</h1>
-            <h1>i am items</h1>
-            <h1>i am items</h1>
-            <h1>i am items</h1>
-            <h1>i am items</h1>
-            <h1>i am items</h1>
-   
+        <div className=''>
+            {products?.map(product=>(
+                <Item 
+                    key={product.id}
+                    {...product}
+                />
+            ))}
         </div>
     )
 }
