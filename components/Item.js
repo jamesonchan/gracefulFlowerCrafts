@@ -22,6 +22,7 @@ function Item({id,title,price,description,category,image}) {
                     currency='USD'
                 />
             </div>
+            <div></div>
         </div>
     )
 }
