@@ -1,10 +1,13 @@
 import React from 'react'
+import Link from 'next/link'
 
-function SocialIcon({Icon}) {
+function SocialIcon({Icon,title}) {
     return (
-        <div className=''>
-            {Icon && <Icon fontSize='large' className='icon'/>}
-        </div>
+        
+            <Link href={`https://www.${title}.com/jamesonchan/?hl=en`}>
+                {Icon && <Icon fontSize='large' className='icon'/>}
+            </Link>
+       
     )
 }
 

@@ -14,7 +14,7 @@ function Header() {
                 
                 {/* social icons logo left */}
                 <div className='flex items-center flex-grow space-x-2'>
-                    <SocialIcon Icon={Instagram}/>
+                    <SocialIcon Icon={Instagram} title='instagram'/>
                     <SocialIcon Icon={Facebook}/>
                     <SocialIcon Icon={Pinterest}/>
                     <SocialIcon Icon={Twitter}/>

@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Header from '../components/Header'
 import BottomHeader from '../components/BottomHeader'
 import FlowerItems from '../components/FlowerItems'
+import Footer from '../components/Footer'
 
 export default function Home({products}) {
 
@@ -22,6 +23,10 @@ export default function Home({products}) {
       <main>
         <FlowerItems products={products}/>
       </main>
+
+      {/* Footer */}
+      <Footer />
+
     </div>
   )
 }
