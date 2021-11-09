@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Currency from 'react-currency-formatter'
 
 
-function Item({id,title,price,description,category,image}) {
+function Item({id,title,price,description,category,image,name}) {
 
     const [hasFreeShipping] = useState(Math.random() < 0.5)
 
@@ -13,7 +13,7 @@ function Item({id,title,price,description,category,image}) {
             {/* iamge tag */}
             <div className='group bg-white relative flex flex-col p-10 m-5 transition hover:shadow-md duration-150 '>
                 <Image 
-                    src={image}
+                    src={image.url}
                     height={150}
                     width={150}
                     objectFit='contain'
@@ -24,11 +24,11 @@ function Item({id,title,price,description,category,image}) {
             </div>
             {/* price tag */}
             <div className='-mt-3 flex flex-col m-5'>
-                <h4 className='text-xs truncate'>{title}</h4>
-                <p className='text-xs text-gray-400'>{category}</p>
+                <h4 className='text-xs truncate'>{name}</h4>
+                <p className='text-xs text-gray-400'>{description}</p>
                 <div className='text-sm font-bold text-gray-700 flex'>
                     <Currency 
-                        quantity={price}
+                        quantity={price.raw}
                         currency='USD'
                     />
                     {hasFreeShipping && (

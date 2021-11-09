@@ -5,9 +5,13 @@ import {
     ShoppingBagIcon,
     LoginIcon
 } from '@heroicons/react/outline'
+import {signIn, signOut, useSession} from 'next-auth/react'
 
 
 function BottomHeader() {
+
+    const {data:session} = useSession()
+
     return (
         <div className='relative h-[700px] bg-no-repeat bg-right bg-cover bg-fixed' style={{backgroundImage:'url(https://wallpapercave.com/wp/wp4652766.jpg)'}}>
             {/* bottom nav */}
@@ -33,10 +37,17 @@ function BottomHeader() {
 
                         {/*utility right  */}
                     <div className='flex items-center space-x-2'>
-                        <div className='flex items-center'>
-                            <LoginIcon className='h-10 p-2 cursor-pointer'/>
-                            <p className='headerText'>Sign In</p>
-                        </div>
+                        {session ? (
+                            <div className='flex items-center p-1'>
+                              <img onClick={signOut} className='ml-3 h-6 sm:h-7 cursor-pointer rounded-full object-cover' src={session.user.image} alt="" />
+                              <p onClick={signOut} className='ml-2 headerText'>Sign Out</p>
+                            </div>
+                        ):(
+                            <div className='flex items-center'>
+                                <LoginIcon className='h-10 p-2 cursor-pointer'/>
+                                <p onClick={signIn} className='headerText'>Sign In</p>
+                            </div>
+                        )}
                         <div className='relative flex items-center'>
                             <ShoppingBagIcon className='h-10 p-2 cursor-pointer'/>
                             <p className='headerText'>Flower Basket</p>
