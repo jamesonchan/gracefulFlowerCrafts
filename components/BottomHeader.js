@@ -6,16 +6,18 @@ import {
     LoginIcon
 } from '@heroicons/react/outline'
 import {signIn, signOut, useSession} from 'next-auth/react'
+import {useRouter} from 'next/router'
 
 
 function BottomHeader() {
 
     const {data:session} = useSession()
+    const router = useRouter()
 
     return (
-        <div className='relative h-[700px] bg-no-repeat bg-right bg-cover bg-fixed' style={{backgroundImage:'url(https://wallpapercave.com/wp/wp4652766.jpg)'}}>
+        <div className='sticky top-0 z-50'>
             {/* bottom nav */}
-            <div className='shadow-lg sticky top-0 z-50 bg-white p-2'>
+            <div className='shadow-lg bg-white p-2'>
                 <div className='max-w-7xl xl:mx-auto flex items-center justify-between'>
                     {/* image container */}
                     <div className='items-center pl-1'>
@@ -44,13 +46,13 @@ function BottomHeader() {
                             </div>
                         ):(
                             <div className='flex items-center'>
-                                <LoginIcon className='h-10 p-2 cursor-pointer'/>
-                                <p onClick={signIn} className='headerText'>Sign In</p>
+                                <LoginIcon onClick={signIn} className='h-10 p-2 cursor-pointer'/>
+                                <button onClick={signIn} className='headerText'>Sign In</button>
                             </div>
                         )}
                         <div className='relative flex items-center'>
-                            <ShoppingBagIcon className='h-10 p-2 cursor-pointer'/>
-                            <p className='headerText'>Flower Basket</p>
+                            <ShoppingBagIcon onClick={()=>router.push('/cart')} className='h-10 p-2 cursor-pointer'/>
+                            <button onClick={()=>router.push('/cart')} className='headerText'>Flower Basket</button>
                             <span className='absolute bg-yellow-500 top-0 left-5 w-4 h-4 font-bold rounded-full text-xs text-center  text-white'>3</span>
                         </div>
                         
@@ -58,10 +60,6 @@ function BottomHeader() {
 
                        
                 </div>
-            </div>
-               {/* uttility button center */}
-            <div className='absolute top-1/2 w-full text-center'>
-                <button className='bg-gray-500 text-red-100 font-semibold rounded-lg p-2 border border-yellow-500 hover:bg-red-300 active:scale-90 transiton duration-150'>UTILITY BUTTON</button>  
             </div>
         </div>
     )

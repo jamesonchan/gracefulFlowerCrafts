@@ -1,11 +1,13 @@
 import React from 'react'
 import SocialIcon from './SocialIcon';
 import { Instagram, Facebook, Pinterest, Twitter, Email,Home} from '@material-ui/icons';
+import {useRouter} from 'next/router'
 
 
 
 
 function Header() {
+    const router = useRouter()
     return (
         <header>
             {/* top navbar */}
@@ -22,7 +24,7 @@ function Header() {
                 </div>
                 {/*  home right */}
                 <div className='flex items-center space-x-2 '>
-                    <Home fontSize='large' className='icon'/>
+                    <Home onClick={()=>router.push('/')} fontSize='large' className='icon'/>
                 </div>
                 </div>
 

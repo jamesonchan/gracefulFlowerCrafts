@@ -1,11 +1,19 @@
 import React,{useState} from 'react'
 import Image from 'next/image'
 import Currency from 'react-currency-formatter'
+import {useCartContext} from '../contexts/CartContextProvider'
+
+
+
+
 
 
 function Item({id,title,price,description,category,image,name}) {
 
     const [hasFreeShipping] = useState(Math.random() < 0.5)
+    
+    const {handleAddToCart} = useCartContext()
+
 
     return (
         <div className=''>
@@ -19,7 +27,7 @@ function Item({id,title,price,description,category,image,name}) {
                     objectFit='contain'
                 />    
                 <div className='opacity-0 group-hover:opacity-100 transition ease-in-out duration-300 absolute bg-yellow-400 rounded-md top-2 right-2 cursor-pointer'>
-                    <button className='text-xs font-bold text-white px-2'>Add to Basket</button>
+                    <button onClick={()=>handleAddToCart(id,1)} className='text-xs font-bold text-white px-2'>Add to Basket</button>
                 </div>   
             </div>
             {/* price tag */}

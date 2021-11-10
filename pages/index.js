@@ -1,13 +1,26 @@
+import { useState } from 'react'
 import Head from 'next/head'
 import Header from '../components/Header'
 import BottomHeader from '../components/BottomHeader'
+import Background from '../components/Background'
 import FlowerItems from '../components/FlowerItems'
 import Footer from '../components/Footer'
 import commerce from '../lib/commerce'
+import client from '../lib/commerce'
 
 export default function Home({merchant,products}) {
 
-  console.log(merchant,products)
+      // // cart
+      // const [cart, setCart] = useState({})
+      // console.log(cart)
+  
+      // // addToCart
+      // const handleAddToCart = async (productId,quantity)=>{
+      //     const {cart} = await client.cart.add(productId,quantity)
+      //     setCart(cart)
+      // }
+
+
 
   return (
     <div className=''>
@@ -20,6 +33,7 @@ export default function Home({merchant,products}) {
       {/* header */}
       <Header />
       <BottomHeader />
+      <Background />
 
      
       {/* main section */}
