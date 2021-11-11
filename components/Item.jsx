@@ -8,6 +8,7 @@ import {useCartContext} from '../contexts/CartContextProvider'
 
 
 
+
 function Item({id,title,price,description,category,image,name}) {
 
     const [hasFreeShipping] = useState(Math.random() < 0.5)
@@ -19,12 +20,12 @@ function Item({id,title,price,description,category,image,name}) {
         <div className=''>
           <div className=''>
             {/* iamge tag */}
-            <div className='group bg-white relative flex flex-col p-10 m-5 transition hover:shadow-md duration-150 '>
+            <div className='group relative flex flex-col m-5 transition hover:shadow-md duration-150 '>
                 <Image 
                     src={image.url}
-                    height={150}
-                    width={150}
-                    objectFit='contain'
+                    height={200}
+                    width={200}
+                    objectFit='cover'
                 />    
                 <div className='opacity-0 group-hover:opacity-100 transition ease-in-out duration-300 absolute bg-yellow-400 rounded-md top-2 right-2 cursor-pointer'>
                     <button onClick={()=>handleAddToCart(id,1)} className='text-xs font-bold text-white px-2'>Add to Basket</button>

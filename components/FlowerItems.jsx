@@ -22,19 +22,7 @@ function FlowerItems({products}) {
             ))}
 
         <img className='md:col-span-full' src="https://links.papareact.com/dyz" alt="" />
-
-            <div className='md:col-span-2'>
-                {products
-                .slice(4,5)
-                .map(product=>(
-                    <Item
-                        key={product.id}
-                        {...product}
-                    />
-                ))}
-            </div>
-
-           
+       
             
             {products
             .slice(4,products.length)

@@ -7,12 +7,15 @@ import {
 } from '@heroicons/react/outline'
 import {signIn, signOut, useSession} from 'next-auth/react'
 import {useRouter} from 'next/router'
+import {useCartContext} from '../contexts/CartContextProvider'
 
 
 function BottomHeader() {
 
     const {data:session} = useSession()
     const router = useRouter()
+
+    const {cart} = useCartContext()
 
     return (
         <div className='sticky top-0 z-50'>
@@ -28,6 +31,7 @@ function BottomHeader() {
                             objectFit='contain'
                             className='cursor-pointer'
                         />
+
                     </div>
 
                         {/* search middle */}
@@ -53,7 +57,7 @@ function BottomHeader() {
                         <div className='relative flex items-center'>
                             <ShoppingBagIcon onClick={()=>router.push('/cart')} className='h-10 p-2 cursor-pointer'/>
                             <button onClick={()=>router.push('/cart')} className='headerText'>Flower Basket</button>
-                            <span className='absolute bg-yellow-500 top-0 left-5 w-4 h-4 font-bold rounded-full text-xs text-center  text-white'>3</span>
+                            <span className='absolute bg-yellow-500 top-0 left-5 w-4 h-4 font-bold rounded-full text-xs text-center  text-white'>{cart.total_items}</span>
                         </div>
                         
                     </div>

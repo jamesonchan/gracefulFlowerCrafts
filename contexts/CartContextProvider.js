@@ -6,6 +6,10 @@ export const CartContextProvider = ({children})=>{
     const [cart, setCart] = useState({})
     console.log(cart)
 
+    const fetchCart = async()=>{
+        setCart(await client.cart.retrieve())
+    }
+
     const handleAddToCart = async(productId,quantity)=>{
         const {cart} = await client.cart.add(productId,quantity)
         setCart(cart)
@@ -23,7 +27,7 @@ export const CartContextProvider = ({children})=>{
 
 
     return(
-        <CartContext.Provider value={{ cart , handleAddToCart,handleRemoveFromCart,handleEmptyCart}}>
+        <CartContext.Provider value={{ cart , fetchCart ,handleAddToCart,handleRemoveFromCart,handleEmptyCart}}>
             {children}
         </CartContext.Provider>
     )

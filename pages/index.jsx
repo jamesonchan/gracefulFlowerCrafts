@@ -25,7 +25,7 @@ export default function Home({merchant,products}) {
   return (
     <div className=''>
       <Head>
-        <title>Create Next App</title>
+        <title>Graceful-FlowerCrafts</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
