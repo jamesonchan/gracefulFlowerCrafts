@@ -9,7 +9,7 @@ import {useCartContext} from '../contexts/CartContextProvider'
 
 
 
-function Item({id,title,price,description,category,image,name}) {
+function Item ({id,title,price,description,category,image,name}){
 
     const [hasFreeShipping] = useState(Math.random() < 0.5)
     
@@ -17,8 +17,8 @@ function Item({id,title,price,description,category,image,name}) {
 
 
     return (
-        <div className=''>
-          <div className=''>
+        
+          <div>
             {/* iamge tag */}
             <div className='group relative flex flex-col m-5 transition hover:shadow-md duration-150 '>
                 <Image 
@@ -50,7 +50,7 @@ function Item({id,title,price,description,category,image,name}) {
             </div>
             
           </div>
-        </div>
+      
     )
 }
 

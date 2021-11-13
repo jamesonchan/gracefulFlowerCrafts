@@ -7,8 +7,11 @@ import FlowerItems from '../components/FlowerItems'
 import Footer from '../components/Footer'
 import commerce from '../lib/commerce'
 import client from '../lib/commerce'
+import { useCartContext } from '../contexts/CartContextProvider'
 
 export default function Home({merchant,products}) {
+
+
 
       // // cart
       // const [cart, setCart] = useState({})
@@ -21,7 +24,6 @@ export default function Home({merchant,products}) {
       // }
 
 
-
   return (
     <div className=''>
       <Head>
@@ -32,7 +34,7 @@ export default function Home({merchant,products}) {
     
       {/* header */}
       <Header />
-      <BottomHeader />
+      <BottomHeader products={products}/>
       <Background />
 
      
@@ -61,8 +63,7 @@ export default function Home({merchant,products}) {
 
 export async function getStaticProps(){
   const merchant = await commerce.merchants.about()
-  const {data:categories} = await commerce.categories.list()
-  const {data:products} = await commerce.products.list()
+  const {data:products} = await client.products.list()
 
   return{
     props:{

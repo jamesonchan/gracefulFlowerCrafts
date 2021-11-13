@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import Image from 'next/image'
 import {
     SearchIcon,
@@ -15,7 +15,7 @@ function BottomHeader() {
     const {data:session} = useSession()
     const router = useRouter()
 
-    const {cart} = useCartContext()
+    const {cart,handleSearchChange,searchTerm} = useCartContext()
 
     return (
         <div className='sticky top-0 z-50'>
@@ -36,7 +36,7 @@ function BottomHeader() {
 
                         {/* search middle */}
                     <div className='flex bg-gray-100 border rounded-md mx-5'>
-                        <input className='outline-none rounded-md pl-4 bg-gray-100 text-sm' type="text" placeholder='Search your favorites'/>
+                        <input className='outline-none rounded-md pl-4 bg-gray-100 text-sm' type="text" placeholder='Search your favorites' value={searchTerm} onChange={handleSearchChange} />
                         <SearchIcon className='h-10 p-3'/>
                         
                     </div>
@@ -57,7 +57,7 @@ function BottomHeader() {
                         <div className='relative flex items-center'>
                             <ShoppingBagIcon onClick={()=>router.push('/cart')} className='h-10 p-2 cursor-pointer'/>
                             <button onClick={()=>router.push('/cart')} className='headerText'>Flower Basket</button>
-                            <span className='absolute bg-yellow-500 top-0 left-5 w-4 h-4 font-bold rounded-full text-xs text-center  text-white'>{cart.total_items}</span>
+                            <span className='absolute bg-yellow-500 top-0 left-5 w-4 h-4 font-bold rounded-full text-xs text-center  text-white'>{cart.total_items > 0 ? cart.total_items : 0}</span>
                         </div>
                         
                     </div>

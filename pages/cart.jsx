@@ -3,6 +3,7 @@ import {useCartContext} from '../contexts/CartContextProvider'
 import CartItem from '../components/CartItem'
 import Header from '../components/Header'
 import BottomHeader from '../components/BottomHeader'
+import { useRouter } from 'next/router'
 
 
 function cart() {
@@ -11,6 +12,8 @@ function cart() {
     useEffect(() => {
        fetchCart()
     }, [])
+
+    const router = useRouter()
 
     return (
         <div>
@@ -29,8 +32,19 @@ function cart() {
               
                 </div>
 
-               <section className='bg-yellow-300 sm:ml-5 col-span-1'>
-                    <h1>Checkout</h1>
+               <section className='bg-white shadow-lg rounded-2xl sm:ml-5 col-span-1 mt-5'>
+                    <h1 className='px-2 font-semibold text-gray-700 text-2xl mb-5'>Checkout</h1>
+                    {/* items total box */}
+                    <div className='bg-yellow-300 flex justify-between px-2 rounded-md'>
+                        <p className='text-md'>Item(s) Total</p>
+                        <span className='text-md'>{cart.subtotal?.formatted_with_symbol}</span>
+                    </div>
+                    {/* checkout button */}
+                    <div className='bg-gray-700 text-center mt-10 p-2 rounded-md cursor-pointer active:bg-yellow-300 transition active:scale-105 duration-200'>
+                        <button className='text-white font-semibold'>Proceed to checkout</button>
+                    </div>
+                    <p onClick={()=>router.push('/')} className='text-sm mt-2 font-semibold hover:underline hover:text-red-300 text-right px-2 cursor-pointer'>Keep shopping</p>
+                    
                </section>
 
             </main>

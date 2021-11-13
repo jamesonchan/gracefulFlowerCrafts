@@ -4,10 +4,16 @@ import client from '../lib/commerce'
 
 export const CartContextProvider = ({children})=>{
     const [cart, setCart] = useState({})
-    console.log(cart)
+    const [searchTerm, setSearchTerm] = useState('')
+    const [searchResult, setSearchResult] = useState([])
+
 
     const fetchCart = async()=>{
         setCart(await client.cart.retrieve())
+    }
+
+    const handleSearchChange = (e)=>{
+        setSearchTerm(e.target.value)
     }
 
     const handleAddToCart = async(productId,quantity)=>{
@@ -25,9 +31,28 @@ export const CartContextProvider = ({children})=>{
         setCart(cart)
     }
 
+    const handleUpdateCartQty = async(productId, quantity)=>{
+        const {cart} = await client.cart.update(productId,{quantity})
+        setCart(cart)
+    }
+
+
+
 
     return(
-        <CartContext.Provider value={{ cart , fetchCart ,handleAddToCart,handleRemoveFromCart,handleEmptyCart}}>
+        <CartContext.Provider value={{ 
+            cart,
+            searchTerm,
+            searchResult,
+            handleSearchChange,
+            setSearchTerm,
+            setSearchResult,
+            fetchCart,
+            handleAddToCart,
+            handleRemoveFromCart,
+            handleEmptyCart,
+            handleUpdateCartQty,}}
+            >
             {children}
         </CartContext.Provider>
     )
