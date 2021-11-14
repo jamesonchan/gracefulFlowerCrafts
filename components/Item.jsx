@@ -3,12 +3,6 @@ import Image from 'next/image'
 import Currency from 'react-currency-formatter'
 import {useCartContext} from '../contexts/CartContextProvider'
 
-
-
-
-
-
-
 function Item ({id,title,price,description,category,image,name}){
 
     const [hasFreeShipping] = useState(Math.random() < 0.5)

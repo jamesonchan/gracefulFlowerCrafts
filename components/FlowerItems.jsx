@@ -3,16 +3,6 @@ import Item from './Item'
 import {useCartContext} from '../contexts/CartContextProvider'
 
 
-
-
-
-
-
-
-
-
-
-
 function FlowerItems({products}) {
     
     const {searchTerm,searchResult,setSearchResult} = useCartContext()

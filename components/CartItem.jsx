@@ -12,7 +12,7 @@ function CartItem({media:{source},name,id,line_total:{formatted_with_symbol},qua
     const {handleRemoveFromCart,handleUpdateCartQty} = useCartContext()
     
     return (
-        <div className='bg-gray-100 rounded-md flex py-5 px-2'>
+        <div className='bg-gray-100 flex py-5 px-2'>
             {/* image */}
             <div className='relative h-[165px] w-[210px] flex-shrink-0'>
                 <Image 
