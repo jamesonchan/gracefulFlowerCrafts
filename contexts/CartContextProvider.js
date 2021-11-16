@@ -6,6 +6,9 @@ export const CartContextProvider = ({children})=>{
     const [cart, setCart] = useState({})
     const [searchTerm, setSearchTerm] = useState('')
     const [searchResult, setSearchResult] = useState([])
+    const [order, setOrder] = useState({})
+    const [errorMessage, setErrorMessage] = useState('')
+   
 
 
     const fetchCart = async()=>{
@@ -36,6 +39,20 @@ export const CartContextProvider = ({children})=>{
         setCart(cart)
     }
 
+    const refreshCart = async ()=>{
+        const newCart = await client.cart.refresh()
+        setCart(newCart)
+    }
+
+    const handleCaptureCheckout = async (checkoutTokenId,newOrder)=>{
+        try {
+            const incomingOrder = await client.checkout.capture(checkoutTokenId,newOrder)
+            setOrder(incomingOrder)
+            refreshCart()
+        } catch (error) {
+            setErrorMessage(error.data.error.message)
+        }
+    }
 
 
 
@@ -44,7 +61,12 @@ export const CartContextProvider = ({children})=>{
             cart,
             searchTerm,
             searchResult,
+            order,
+            errorMessage,
+            setOrder,
+            setErrorMessage,
             handleSearchChange,
+            handleCaptureCheckout,
             setSearchTerm,
             setSearchResult,
             fetchCart,

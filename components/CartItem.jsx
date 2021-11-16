@@ -25,9 +25,9 @@ function CartItem({media:{source},name,id,line_total:{formatted_with_symbol},qua
 
             {/* description */}
             <div className='flex flex-col flex-grow pl-5'>
-                <div className='flex justify-between'>
+                <div className=''>
                     <p className='line-clamp-3 hover:underline'>{name}</p>
-                    <span className='pl-20'>{formatted_with_symbol}</span>
+                    <span className='font-semibold text-sm'>{formatted_with_symbol}</span>
                 </div>
 
                 <div className='flex items-center mt-5 space-x-1'>
