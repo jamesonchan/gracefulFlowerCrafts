@@ -24,7 +24,6 @@ const AddressForm = ({checkoutToken, next}) => {
 
     const fetchShippingCountries = async (checkoutTokenId)=>{
         const {countries} = await client.services.localeListShippingCountries(checkoutTokenId)
-
         setshippingCountries(countries)
         setshippingCountry(Object.keys(countries)[0])
     }

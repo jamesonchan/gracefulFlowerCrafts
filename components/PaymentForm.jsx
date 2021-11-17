@@ -7,17 +7,19 @@ import Review from './Review'
 const stripePromise = loadStripe(process.env.stripe_public_key)
 
 const PaymentForm = ({checkoutToken,backStep,shippingData,onCaptureCheckout,nextStep,timeout}) => {
+    console.log(shippingData)
     const handleSubmit = async (event,elements,stripe)=>{
         event.preventDefault()
         if(!stripe || !elements) return
         const cardElement = elements.getElement(CardElement)
         const {error,paymentMethod} = await stripe.createPaymentMethod({type:'card',card:cardElement})
         if(error){
-            console.log(error)
+            alert(error)
+            return
         }else{
             const orderData = {
                 line_items:checkoutToken.live.line_items,
-                customer:{firstname:shippingData.firstName, lastname:shippingData.lastName, email:shippingData.emial},
+                customer:{firstname:shippingData.firstName, lastname:shippingData.lastName, email:shippingData.email},
                 shipping:{
                     name:'Primary', 
                     street:shippingData.address1, 
@@ -26,7 +28,7 @@ const PaymentForm = ({checkoutToken,backStep,shippingData,onCaptureCheckout,next
                     postal_zip_code:shippingData.zip,
                     country:shippingData.shippingCountry
             },
-            fulfilment:{shipping_method:shippingData.shippingOption},
+            fulfillment:{shipping_method:shippingData.shippingOption},
             payment:{
                 gateway:'stripe',
                 stripe:{

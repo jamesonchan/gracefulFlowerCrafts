@@ -22,16 +22,22 @@ function checkout() {
 
 
     useEffect(() => {
-       const generateToken = async()=>{
-            try{
-                const token = await client.checkout.generateToken(cart.id,{type:'cart'})
-                setCheckoutToken(token)
-            }catch(errorMessage){
-                console.log(errorMessage)
+        if (cart.id) {
+          const generateToken = async () => {
+            try {
+              const token = await client.checkout.generateToken(cart.id, { type: 'cart' });
+    
+              setCheckoutToken(token);
+            } catch {
+              if (activeStep !== steps.length) router.push('/');
             }
-       }
-       generateToken()
-    }, [cart])
+          };
+    
+          generateToken();
+        }
+      }, [cart]);
+
+    
 
 
     const nextStep = () => setActiveStep((prevActiveStep) => prevActiveStep +1)
@@ -51,7 +57,7 @@ function checkout() {
     let Confirmation=()=> order.customer ? (
         <>
             <div>
-                <Typography variant="h5">Thank you for your purchase, {order.custoemr.firstname}{order.customer.lastname}</Typography>
+                <Typography variant="h5">Thank you for your purchase, {order.customer.firstname}{order.customer.lastname}</Typography>
                 <Divider className={classes.divider}/>
                 <Typography variant="subtitle2">order ref:{order.customer_reference}</Typography>
             </div>
