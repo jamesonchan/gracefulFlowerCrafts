@@ -1,28 +1,16 @@
-import { useState } from 'react'
 import Head from 'next/head'
 import Header from '../components/Header'
 import BottomHeader from '../components/BottomHeader'
 import Background from '../components/Background'
 import FlowerItems from '../components/FlowerItems'
 import Footer from '../components/Footer'
-import commerce from '../lib/commerce'
 import client from '../lib/commerce'
-import { useCartContext } from '../contexts/CartContextProvider'
+
 
 export default function Home({merchant,products}) {
 
 
-
-      // // cart
-      // const [cart, setCart] = useState({})
-      // console.log(cart)
-  
-      // // addToCart
-      // const handleAddToCart = async (productId,quantity)=>{
-      //     const {cart} = await client.cart.add(productId,quantity)
-      //     setCart(cart)
-      // }
-
+    
 
   return (
     <div className=''>
@@ -50,19 +38,8 @@ export default function Home({merchant,products}) {
   )
 }
 
-// export async function getServerSideProps(context){
-//   const products = await fetch('https://fakestoreapi.com/products').then(
-//     res=>res.json()
-//   )
-//   return {
-//     props:{
-//       products
-//     }
-//   }
-// }
-
 export async function getStaticProps(){
-  const merchant = await commerce.merchants.about()
+  const merchant = await client.merchants.about()
   const {data:products} = await client.products.list()
 
   return{

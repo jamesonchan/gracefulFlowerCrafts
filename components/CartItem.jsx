@@ -7,7 +7,7 @@ import {Button} from '@material-ui/core'
 
 
 
-function CartItem({media:{source},name,id,line_total:{formatted_with_symbol},quantity}) {
+function CartItem({media,name,id,line_total:{formatted_with_symbol},quantity}) {
 
     const {handleRemoveFromCart,handleUpdateCartQty} = useCartContext()
     
@@ -16,7 +16,7 @@ function CartItem({media:{source},name,id,line_total:{formatted_with_symbol},qua
             {/* image */}
             <div className='relative h-[165px] w-[210px] flex-shrink-0'>
                 <Image 
-                    src={source}
+                    src={media?.source}
                     layout='fill'
                     objectFit='cover'
                     className='rounded-2xl'

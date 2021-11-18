@@ -10,7 +10,6 @@ export const CartContextProvider = ({children})=>{
     const [errorMessage, setErrorMessage] = useState('')
    
 
-
     const fetchCart = async()=>{
         setCart(await client.cart.retrieve())
     }

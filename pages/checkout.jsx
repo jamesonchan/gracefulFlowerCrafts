@@ -4,6 +4,7 @@ import {useCartContext} from '../contexts/CartContextProvider'
 import client from '../lib/commerce'
 import useStyles from '../styles/checkout'
 import {useRouter} from 'next/router'
+import Header from '../components/Header'
 
 import PaymentForm from '../components/PaymentForm'
 import AddressForm from '../components/AddressForm'
@@ -22,20 +23,18 @@ function checkout() {
 
 
     useEffect(() => {
-        if (cart.id) {
-          const generateToken = async () => {
+
+        const generateToken = async ()=>{
             try {
-              const token = await client.checkout.generateToken(cart.id, { type: 'cart' });
-    
-              setCheckoutToken(token);
-            } catch {
-              if (activeStep !== steps.length) router.push('/');
+                const token = await client.checkout.generateToken(cart.id,{type:'cart'})
+                setCheckoutToken(token)
+            } catch (error) {
+               router.push('/cart')
             }
-          };
-    
-          generateToken();
-        }
-      }, [cart]);
+        } 
+        
+        generateToken()
+     }, [cart])
 
     
 
@@ -84,7 +83,7 @@ function checkout() {
         <>
         <Typography variant="h5">Error:{errorMessage}</Typography>
         <br />
-        <Button onClick={()=>router.push('/')} variant="outlined" type="button">Back to Home</Button>
+        <Button onClick={()=>router.push('/')} variant="outlined" type="button">Back to Home Page</Button>
         </>
         )
     }
@@ -95,6 +94,7 @@ function checkout() {
 
     return (
         <>
+            <Header />
             <div className={classes.toolbar}/>
             <main className={classes.layout}>
             <Paper className={classes.paper}>
