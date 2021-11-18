@@ -80,11 +80,13 @@ function checkout() {
     )
 
     if(errorMessage){
+        Confirmation = () =>(
         <>
         <Typography variant="h5">Error:{errorMessage}</Typography>
         <br />
         <Button onClick={()=>router.push('/')} variant="outlined" type="button">Back to Home</Button>
         </>
+        )
     }
 
     const Form =()=> activeStep ===0
