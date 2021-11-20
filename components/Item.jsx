@@ -19,7 +19,7 @@ function Item ({id,title,price,description,category,image,name}){
             {/* iamge tag */}
             <div className='group relative flex flex-col m-5 transition hover:shadow-md duration-150 cursor-pointer '>
                     <Image
-                        onClick={()=>router.push(`/${id}`)} 
+                        onClick={()=>router.push(`/product/${id}`)} 
                         src={image.url}
                         height={200}
                         width={200}

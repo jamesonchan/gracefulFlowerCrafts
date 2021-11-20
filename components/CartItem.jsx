@@ -7,19 +7,23 @@ import {Button} from '@material-ui/core'
 
 
 
+
 function CartItem({media,name,id,line_total:{formatted_with_symbol},quantity}) {
 
     const {handleRemoveFromCart,handleUpdateCartQty} = useCartContext()
     
+
+    
     return (
         <div className='bg-gray-100 flex py-5 px-2'>
             {/* image */}
-            <div className='relative h-[165px] w-[210px] flex-shrink-0'>
+            <div className='relative h-[165px] w-[210px] flex-shrink-0 cursor-pointer'>
                 <Image 
                     src={media?.source}
                     layout='fill'
                     objectFit='cover'
                     className='rounded-2xl'
+                    priority
                 />
             </div>
 
