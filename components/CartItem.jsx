@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{forwardRef} from 'react'
 import {useCartContext} from '../contexts/CartContextProvider'
 import Image from 'next/image'
 import {Button} from '@material-ui/core'
@@ -8,14 +8,14 @@ import {Button} from '@material-ui/core'
 
 
 
-function CartItem({media,name,id,line_total:{formatted_with_symbol},quantity}) {
+const CartItem = forwardRef(({media,name,id,line_total:{formatted_with_symbol},quantity},ref) =>{
 
     const {handleRemoveFromCart,handleUpdateCartQty} = useCartContext()
     
 
     
     return (
-        <div className='bg-gray-100 flex py-5 px-2'>
+        <div ref={ref} className='bg-white flex py-5 px-2'>
             {/* image */}
             <div className='relative h-[165px] w-[210px] flex-shrink-0 cursor-pointer'>
                 <Image 
@@ -46,7 +46,7 @@ function CartItem({media,name,id,line_total:{formatted_with_symbol},quantity}) {
            
         </div>
     )
-}
+})
 
 export default CartItem
 

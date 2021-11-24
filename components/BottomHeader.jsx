@@ -12,10 +12,10 @@ import {useCartContext} from '../contexts/CartContextProvider'
 
 function BottomHeader() {
 
-    const {data:session} = useSession()
+    // const {data:session} = useSession()
     const router = useRouter()
 
-    const {cart,handleSearchChange,searchTerm} = useCartContext()
+    const {cart,setSearchTerm,searchTerm} = useCartContext()
 
     return (
         <div className='sticky top-0 z-50'>
@@ -36,14 +36,14 @@ function BottomHeader() {
 
                         {/* search middle */}
                     <div className='flex bg-gray-100 border rounded-md mx-5'>
-                        <input className='outline-none rounded-md pl-4 bg-gray-100 text-sm' type="text" placeholder='Search your favorites' value={searchTerm} onChange={handleSearchChange} />
+                        <input className='outline-none rounded-md pl-4 bg-gray-100 text-sm' type="text" placeholder='Search your favorites' value={searchTerm} onChange={(e)=>setSearchTerm(e.target.value)} />
                         <SearchIcon className='h-10 p-3'/>
                         
                     </div>
 
                         {/*utility right  */}
                     <div className='flex items-center space-x-2'>
-                        {session ? (
+                        {/* {session ? (
                             <div className='flex items-center p-1'>
                               <img onClick={signOut} className='ml-3 h-6 sm:h-7 cursor-pointer rounded-full object-cover' src={session.user.image} alt="" />
                               <p onClick={signOut} className='ml-2 headerText'>Sign Out</p>
@@ -53,7 +53,7 @@ function BottomHeader() {
                                 <LoginIcon onClick={signIn} className='h-10 p-2 cursor-pointer'/>
                                 <button onClick={signIn} className='headerText'>Sign In</button>
                             </div>
-                        )}
+                        )} */}
                         <div className='relative flex items-center'>
                             <ShoppingBagIcon onClick={()=>router.push('/cart')} className='h-10 p-2 cursor-pointer'/>
                             <button onClick={()=>router.push('/cart')} className='headerText'>Flower Basket</button>

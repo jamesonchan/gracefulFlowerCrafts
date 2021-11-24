@@ -14,11 +14,11 @@ export const CartContextProvider = ({children})=>{
         setCart(await client.cart.retrieve())
     }
 
-    const handleSearchChange = (e)=>{
-        setSearchTerm(e.target.value)
-    }
-
-    const handleAddToCart = async(productId,quantity)=>{
+    const handleAddToCart = async(productId,quantity,productInStock,cartQuantityById)=>{
+        if(cartQuantityById >= productInStock){
+            alert('sorry,added items have exceeded our stock limit')
+            return
+        }
         const {cart} = await client.cart.add(productId,quantity)
         setCart(cart)
     }
@@ -64,7 +64,6 @@ export const CartContextProvider = ({children})=>{
             errorMessage,
             setOrder,
             setErrorMessage,
-            handleSearchChange,
             handleCaptureCheckout,
             setSearchTerm,
             setSearchResult,

@@ -6,6 +6,8 @@ import BottomHeader from '../../components/BottomHeader'
 import {useCartContext} from '../../contexts/CartContextProvider'
 import {Carousel} from 'react-responsive-carousel'
 import "react-responsive-carousel/lib/styles/carousel.min.css"
+import Footer from '../../components/Footer'
+
 
 
 
@@ -17,11 +19,15 @@ function Details({products}) {
 
     const product = products.filter(product=>product.id === id)
 
-    const {handleAddToCart} = useCartContext()
+    const {handleAddToCart,cart} = useCartContext()
 
-    console.log(product)
 
-   const {id:productId,media:{source},name,price:{formatted_with_symbol},inventory:{available},description,assets} = product[0]
+   const {id:productId,name,price:{formatted_with_symbol},inventory:{available},description,assets,image:{id:productImageId}} = product[0]
+  
+
+   const cartItem = cart.line_items?.filter(item=>item.image.id === productImageId) 
+  
+  
     return (
         < >
             <Header />
@@ -35,7 +41,7 @@ function Details({products}) {
                     >
                        
                         {assets.map(asset=>(
-                            <div className='rounded-lg'>
+                            <div key={asset.url} className='rounded-lg'>
                                 <img  className='object-cover rounded-xl' src={asset.url} alt="" />
                             </div>
                         ))}
@@ -48,13 +54,14 @@ function Details({products}) {
                     <p className='mt-2 line-clamp-3 text-lg text-gray-600' dangerouslySetInnerHTML={{__html:description}}></p>
                     <div className='mt-5 flex items-center justify-between'>
                         <p className='text-2xl font-bold'>{formatted_with_symbol}</p>
-                        <p className='text-sm font-semibold'>{ available > 0 ? `${available} in stock` : 'currently out of stock'}</p>
+                        <p className={`text-sm font-semibold ${available === 1 && 'text-red-500'} ${available === 0 && 'text-gray-400'}`}>{ available === 1 ? `Only ${available} left in stock!`: available > 0 ? `${available} in stock` :  'Currently out of stock'}</p>
                     </div>
-                    <div onClick={()=>handleAddToCart(productId,1)} className='bg-gray-700 text-center p-2 mt-8 rounded-full cursor-pointer active:scale-x-100 hover:scale-105 transition duration-200 hover:opacity-90'>
-                        <button className='text-white font-semibold text-lg'>Add to basket</button>
+                    <div onClick={()=>handleAddToCart(productId,1,available,cartItem?.[0]?.quantity)} className={`bg-gray-700 text-center p-2 mt-8 rounded-full cursor-pointer active:scale-x-100 hover:scale-105 transition duration-200 hover:opacity-90 ${available === 0 && 'bg-gray-300'}` }>
+                        <button  disabled={available === 0} className='text-white font-semibold text-lg'>Add to basket</button>
                     </div>
                 </div>
             </div>
+            <Footer />
           
         </>
     )
