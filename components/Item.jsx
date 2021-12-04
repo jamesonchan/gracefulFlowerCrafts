@@ -4,7 +4,7 @@ import Currency from 'react-currency-formatter'
 import {useRouter} from 'next/router'
 
 
-function Item ({id,title,price,description,category,image,name}){
+function Item ({id:item_id,title,price,description,category,image,name}){
 
     const [hasFreeShipping] = useState(Math.random() < 0.5)
 
@@ -17,7 +17,7 @@ function Item ({id,title,price,description,category,image,name}){
                   {/* iamge tag */}
                   <div className='group relative flex flex-col m-5 transition hover:shadow-md duration-150 cursor-pointer'>
                     <Image
-                        onClick={()=>router.push(`/product/${id}`)} 
+                        onClick={()=>router.push(`/product/${item_id}`)} 
                         src={image.url}
                         height={200}
                         width={200}

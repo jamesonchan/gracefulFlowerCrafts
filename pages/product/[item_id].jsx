@@ -15,9 +15,9 @@ import Footer from '../../components/Footer'
 function Details({products}) {
     
     const router = useRouter()
-    const {id} = router.query
+    const {item_id} = router.query
 
-    const product = products.filter(product=>product.id === id)
+    const product = products.filter(product=>product.id === item_id)
 
     const {handleAddToCart,cart} = useCartContext()
 
@@ -73,7 +73,7 @@ export async function getStaticPaths(){
     const {data:products} = await client.products.list()
     
     const paths = products.map(product=>({
-        params:{id:product.id}
+        params:{item_id:product.id}
     }))
     
     return{

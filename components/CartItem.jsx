@@ -1,23 +1,27 @@
-import React,{forwardRef} from 'react'
+import React,{forwardRef,useState} from 'react'
 import {useCartContext} from '../contexts/CartContextProvider'
 import Image from 'next/image'
 import {Button} from '@material-ui/core'
+import { useRouter } from 'next/router'
 
 
 
 
 
 
-const CartItem = forwardRef(({media,name,id,line_total:{formatted_with_symbol},quantity},ref) =>{
+
+
+const CartItem = forwardRef(({media,name,id,line_total:{formatted_with_symbol},quantity,product_id:item_id},ref) =>{
 
     const {handleRemoveFromCart,handleUpdateCartQty} = useCartContext()
+    const router = useRouter()
     
 
-    
+
     return (
         <div ref={ref} className='bg-white flex py-5 px-2'>
             {/* image */}
-            <div className='relative h-[165px] w-[210px] flex-shrink-0 cursor-pointer'>
+            <div onClick={()=>router.push(`/product/${item_id}`)} className='relative h-[165px] w-[210px] flex-shrink-0 cursor-pointer'>
                 <Image 
                     src={media?.source}
                     layout='fill'

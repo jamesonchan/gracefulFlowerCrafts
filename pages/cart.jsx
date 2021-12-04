@@ -17,6 +17,8 @@ import FlipMove from 'react-flip-move'
 
 
 
+
+
 function cart() {
     const {cart,handleEmptyCart,fetchCart} = useCartContext()
     
@@ -27,9 +29,6 @@ function cart() {
        fetchCart()
     }, [])
 
-
-
-   
 
 
     const router = useRouter()
