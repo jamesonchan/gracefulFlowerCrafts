@@ -8,7 +8,7 @@ function FlowerItems({products}) {
     const {searchTerm,searchResult,setSearchResult} = useCartContext()
 
     useEffect(() => {
-        const results = products.filter(product=>product.name.toLowerCase().includes(searchTerm.substring()))
+        const results = products.filter(product=>product.name.toLowerCase().includes(searchTerm.substring().toLowerCase()))
         setSearchResult(results)
     }, [searchTerm])
     

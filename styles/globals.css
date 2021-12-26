@@ -3,6 +3,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body{
+    font-family:  Arial, sans-serif;
+}
+
 @layer components{
     .icon{
         @apply hover:bg-white cursor-pointer p-2 transition hover:scale-125 duration-150 rounded-md

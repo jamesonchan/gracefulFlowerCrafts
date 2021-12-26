@@ -32,7 +32,7 @@ function Details({products}) {
         < >
             <Header />
             <BottomHeader />
-            <div className='lg:flex mt-5 max-w-7xl mx-auto'>
+            <div className='lg:flex mt-5 max-w-7xl mx-auto h-screen'>
                 {/* image box */}
                 <div className='p-5'>
                     <Carousel

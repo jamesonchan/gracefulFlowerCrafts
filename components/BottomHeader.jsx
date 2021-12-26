@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import {
   SearchIcon,
@@ -8,19 +8,30 @@ import {
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useCartContext } from "../contexts/CartContextProvider";
+import { debounce } from "lodash";
 
 function BottomHeader() {
   // const {data:session} = useSession()
   const router = useRouter();
 
   const { cart, setSearchTerm, searchTerm } = useCartContext();
-  const searchRef = useRef(null);
+  
+  const handleSearch = (e)=>{
+    setSearchTerm(e.target.value)
+  }
 
-  const handleSearch = (e) => {
-      e.preventDefault()
-      const term = searchRef.current.value
-      setSearchTerm(term)
-  };
+  const debouncedHandleSearch = useMemo(
+    () => debounce(handleSearch, 500),
+    [searchTerm]
+  );
+
+  useEffect(() => {
+    return () => {
+      debouncedHandleSearch.cancel();
+    };
+  }, [])
+
+
 
   return (
     <div className="sticky top-0 z-50">
@@ -44,10 +55,10 @@ function BottomHeader() {
               className="outline-none rounded-md pl-4 bg-gray-100 text-sm"
               type="text"
               placeholder="Search your favorites"
-              ref={searchRef}
+              onChange={debouncedHandleSearch}
             />
             <SearchIcon className="h-10 p-3" />
-            <button type="submit" hidden onClick={handleSearch}>Search</button>
+            
           </form>
 
           {/*utility right  */}
